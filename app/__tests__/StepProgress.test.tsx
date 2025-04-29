@@ -1,4 +1,5 @@
 // app/__tests__/StepProgress.test.tsx
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import StepProgress from '~/components/StepProgress';
 

@@ -1,0 +1,72 @@
+Arguments: 
+  /home/leonardo/.nvm/versions/node/v22.8.0/bin/node /mnt/c/Users/Leo/AppData/Roaming/npm/node_modules/yarn/bin/yarn.js add --dev @types/jest
+
+PATH: 
+  /usr/bin:/home/leonardo/.nvm/versions/node/v22.8.0/bin:/home/leonardo/.local/share/pnpm:/home/leonardo/.cursor-server/bin/0781e811de386a0c5bcb07ceb259df8ff8246a50/bin/remote-cli:/usr/bin:/home/leonardo/.nvm/versions/node/v22.8.0/bin:/home/leonardo/.local/share/pnpm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/mnt/c/Users/Leo/AppData/Local/Programs/cursor/resources/app/bin:/mnt/c/Program Files/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Razer Chroma SDK/bin:/mnt/c/Program Files/Razer Chroma SDK/bin:/mnt/c/Program Files (x86)/Common Files/Oracle/Java/javapath:/mnt/c/Program Files (x86)/Razer/ChromaBroadcast/bin:/mnt/c/Program Files/Razer/ChromaBroadcast/bin:/mnt/c/Windows/system32:/mnt/c/Windows:/mnt/c/Windows/System32/Wbem:/mnt/c/Windows/System32/WindowsPowerShell/v1.0/:/mnt/c/Windows/System32/OpenSSH/:/mnt/c/Windows/system32/config/systemprofile/AppData/Local/Microsoft/WindowsApps:/mnt/c/Program Files (x86)/NVIDIA Corporation/PhysX/Common:/mnt/c/Program Files/NVIDIA Corporation/NVIDIA NvDLISR:/mnt/c/Users/Leo/AppData/Roaming/nvm:/mnt/c/Program Files/nodejs:/mnt/c/Program Files/WireGuard/:/mnt/c/composer:/mnt/c/laragon/bin/php/php-8.1.11-nts-Win32-vs16-x64:/mnt/c/Program Files/PostgreSQL/15/bin:/mnt/c/Program Files/Git/cmd:/mnt/c/Program Files/Docker/Docker/resources/bin:/mnt/c/Users/Leo/AppData/Local/pnpm:/mnt/c/laragon/bin:/mnt/c/laragon/bin/apache/httpd-2.4.47-win64-VS16/bin:/mnt/c/laragon/bin/compos:/mnt/c/Program Files/dotnet/:/mnt/c/Users/Leo/AppData/Local/pnpm:/mnt/c/laragon/bin:/mnt/c/laragon/bin/apache/httpd-2.4.47-win64-VS16/bin:/mnt/c/laragon/bin/composer:/mnt/c/laragon/bin/git/bin:/mnt/c/laragon/bin/git/cmd:/mnt/c/laragon/bin/git/mingw64/bin:/mnt/c/laragon/bin/git/usr/bin:/mnt/c/laragon/bin/laragon/utils:/mnt/c/laragon/bin/mysql/mysql-5.7.33-winx64/bin:/mnt/c/laragon/bin/nginx/nginx-1.19.10:/mnt/c/laragon/bin/ngrok:/mnt/c/laragon/bin/nodejs/node-v14:/mnt/c/laragon/bin/notepad++:/mnt/c/laragon/bin/php/php-7.4.19-Win32-vc15-x64:/mnt/c/laragon/bin/redis/redis-x64-3.2.100:/mnt/c/laragon/bin/telnet:/mnt/c/laragon/usr/bin:/mnt/c/Users/Leo/AppData/Local/Yarn/config/global/node_modules/.bin:/mnt/c/Users/Leo/AppData/Roaming/Composer/vendor/bin:/mnt/c/Users/Leo/AppData/Roaming/npm:/mnt/c/Users/Leo/AppData/Local/Programs/Python/Python39/Scripts/:/mnt/c/Users/Leo/AppData/Local/Programs/Python/Python39/:/mnt/c/Users/Leo/AppData/Local/Microsoft/WindowsApps:/mnt/c/Users/Leo/AppData/Local/Programs/Microsoft VS Code/bin:/mnt/c/Users/Leo/AppData/Roaming/nvm:/mnt/c/Program Files/nodejs:/mnt/c/Program Files/Java/jdk-11.0.13/bin:/mnt/c/Users/Leo/AppData/Local/Programs/cursor/resources/app/bin
+
+Yarn version: 
+  1.22.10
+
+Node version: 
+  22.8.0
+
+Platform: 
+  linux x64
+
+Trace: 
+  Error: ENOENT: no such file or directory, copyfile '/home/leonardo/.cache/yarn/v6/npm-glob-parent-6.0.2-6d237d99083950c79290f24c7642a3de9a28f9e3-integrity/node_modules/glob-parent/LICENSE' -> '/home/leonardo/happy/web-quotation-app/node_modules/eslint/node_modules/glob-parent/LICENSE'
+
+npm manifest: 
+  {
+    "name": "web-quotation-app",
+    "private": true,
+    "sideEffects": false,
+    "type": "module",
+    "scripts": {
+      "build": "remix vite:build",
+      "dev": "remix vite:dev",
+      "lint": "eslint --ignore-path .gitignore --cache --cache-location ./node_modules/.cache/eslint .",
+      "start": "remix-serve ./build/server/index.js",
+      "typecheck": "tsc"
+    },
+    "dependencies": {
+      "@remix-run/node": "^2.16.5",
+      "@remix-run/react": "^2.16.5",
+      "@remix-run/serve": "^2.16.5",
+      "isbot": "^4.1.0",
+      "react": "^18.2.0",
+      "react-dom": "^18.2.0"
+    },
+    "devDependencies": {
+      "@remix-run/dev": "^2.16.5",
+      "@testing-library/jest-dom": "^6.6.3",
+      "@testing-library/react": "^16.3.0",
+      "@testing-library/user-event": "^14.6.1",
+      "@types/react": "^18.2.20",
+      "@types/react-dom": "^18.2.7",
+      "@typescript-eslint/eslint-plugin": "^6.7.4",
+      "@typescript-eslint/parser": "^6.7.4",
+      "autoprefixer": "^10.4.19",
+      "eslint": "^8.38.0",
+      "eslint-import-resolver-typescript": "^3.6.1",
+      "eslint-plugin-import": "^2.28.1",
+      "eslint-plugin-jsx-a11y": "^6.7.1",
+      "eslint-plugin-react": "^7.33.2",
+      "eslint-plugin-react-hooks": "^4.6.0",
+      "postcss": "^8.4.38",
+      "tailwindcss": "^3.4.4",
+      "typescript": "^5.1.6",
+      "vite": "^6.0.0",
+      "vite-tsconfig-paths": "^4.2.1",
+      "vitest": "^3.1.2"
+    },
+    "engines": {
+      "node": ">=20.0.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
