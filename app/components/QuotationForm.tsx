@@ -6,7 +6,11 @@ interface QuotationFormProps {
 
 const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
   return (
-    <form onSubmit={onSubmit} className="w-full bg-[#fff] rounded-lg shadow-md p-6">
+    <form 
+      className="w-full bg-[#fff] rounded-lg shadow-md p-6"
+      data-testid="quotation-form"
+      onSubmit={onSubmit}
+    >
       <h2 className="text-lg font-medium text-gray-800 mb-6">Solicitar Cotización</h2>
       
       <div className="space-y-5">

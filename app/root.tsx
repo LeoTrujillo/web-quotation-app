@@ -4,8 +4,11 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  LiveReload,
 } from "@remix-run/react";
 import type { LinksFunction } from "@remix-run/node";
+import { QuotationProvider } from "./context/quotation";
+import StepProgress from "~/components/StepProgress";
 
 import "./tailwind.css";
 
@@ -41,5 +44,23 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  return (
+    <html lang="es">
+      <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <Meta />
+        <Links />
+      </head>
+      <body className="min-h-screen bg-gray-50">
+        <QuotationProvider>
+            <main>
+              <Outlet />
+            </main>
+        </QuotationProvider>
+        <Scripts />
+        <LiveReload />
+      </body>
+    </html>
+  );
 }

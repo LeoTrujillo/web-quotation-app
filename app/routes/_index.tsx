@@ -1,8 +1,17 @@
 import type { MetaFunction } from "@remix-run/node";
 import { useState } from "react";
+import { useNavigate } from "@remix-run/react";
 import QuotationForm from "~/components/QuotationForm";
 import QuotationSummary from "~/components/QuotationSummary";
 import StepProgress from "~/components/StepProgress";
+import { useQuotation } from "~/context/quotation";
+
+const options = [
+  { label: "Landing Page", value: "landingPage" },
+  { label: "Sitio Web Corporativo", value: "corporateWebsite" },
+  { label: "Aplicación Web", value: "webApp" },
+  { label: "Aplicación Móvil", value: "mobileApp" },
+];
 
 export const meta: MetaFunction = () => {
   return [
@@ -17,9 +26,18 @@ export default function Index() {
   const [sections, setSections] = useState(0);
   const [items, setItems] = useState(0);
   const [isDarkMode, setIsDarkMode] = useState(false);
+  const [selected, setSelected] = useState<string>();
+  const { updateQuotation } = useQuotation();
+  const navigate = useNavigate();
 
   const handleSubmit = (data: any) => {
     console.log(data);
+  };
+
+  const handleContinue = () => {
+    if (!selected) return;
+    updateQuotation({ productType: selected });
+    setCurrentStep(2);
   };
 
   const toggleTheme = () => {
@@ -27,11 +45,14 @@ export default function Index() {
   };
 
   return (
-    <div className={`flex h-screen w-full items-center justify-center ${isDarkMode ? 'bg-gray-900' : 'bg-gray-100'}`}>
+    <div 
+      data-testid="main-container"
+      className={`flex h-screen w-full items-center justify-center ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-gray-100 text-gray-900'}`}
+    >
       <div className="flex w-full max-w-6xl flex-col items-center gap-8 p-4">
         <header className="w-full text-center">
           <div className="flex justify-between items-center mb-4">
-            <h1 className="text-2xl font-bold text-gray-800">
+            <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
               <span className="sr-only">Cotizador de Web</span>
             </h1>
             <button 
@@ -53,14 +74,48 @@ export default function Index() {
         </header>
         <div className="flex w-full flex-col items-center gap-8">
           <div className="w-full">
-            <StepProgress currentStep={1} totalSteps={4} />
+            <StepProgress currentStep={currentStep} totalSteps={4} />
           </div>
           <div className="w-full">
             <QuotationSummary totalPrice={totalPrice} sections={sections} items={items} />
           </div>
-          <div className="w-full">
-            <QuotationForm onSubmit={handleSubmit} />
-          </div>
+          {currentStep === 1 && (
+            <div className="p-6 max-w-xl mx-auto w-full">
+              <h2 className={`text-xl font-bold mb-4 ${isDarkMode ? 'text-white' : 'text-gray-800'}`}>
+                ¿Qué quieres cotizar?
+              </h2>
+              <form className="space-y-4">
+                {options.map((opt) => (
+                  <label key={opt.value} className="flex items-center space-x-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="productType"
+                      value={opt.value}
+                      checked={selected === opt.value}
+                      onChange={() => setSelected(opt.value)}
+                      className="accent-blue-600"
+                    />
+                    <span className={isDarkMode ? 'text-white' : 'text-gray-700'}>
+                      {opt.label}
+                    </span>
+                  </label>
+                ))}
+                <button
+                  type="button"
+                  className="mt-6 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors"
+                  onClick={handleContinue}
+                  disabled={!selected}
+                >
+                  Continuar
+                </button>
+              </form>
+            </div>
+          )}
+          {currentStep === 2 && (
+            <div className="w-full">
+              <QuotationForm onSubmit={handleSubmit} />
+            </div>
+          )}
         </div>
       </div>
     </div>

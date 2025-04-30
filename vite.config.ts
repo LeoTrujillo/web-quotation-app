@@ -9,6 +9,10 @@ declare module "@remix-run/node" {
 }
 
 export default defineConfig({
+  server: {
+    port: 5173,
+    hmr: true,
+  },
   plugins: [
     remix({
       future: {
