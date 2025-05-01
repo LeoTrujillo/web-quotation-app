@@ -1,9 +1,30 @@
 import { FC } from 'react';
 
+/**
+ * Interface that defines the properties for the QuotationForm component
+ * @interface QuotationFormProps
+ * @property {function} onSubmit - Function that handles form submission
+ * @property {any} data - The form data to be submitted
+ */
 interface QuotationFormProps {
   onSubmit: (data: any) => void;
 }
 
+/**
+ * Form component for requesting a quotation
+ * @component
+ * @param {QuotationFormProps} props - The component properties
+ * @returns {JSX.Element} Form with fields for name, email, phone, and message
+ * 
+ * @example
+ * ```tsx
+ * const handleSubmit = (data) => {
+ *   console.log(data);
+ * };
+ * 
+ * <QuotationForm onSubmit={handleSubmit} />
+ * ```
+ */
 const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
   return (
     <form 
@@ -11,19 +32,19 @@ const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
       data-testid="quotation-form"
       onSubmit={onSubmit}
     >
-      <h2 className="text-lg font-medium text-gray-800 mb-6">Solicitar Cotización</h2>
+      <h2 className="text-lg font-medium text-gray-800 mb-6">Request Quotation</h2>
       
       <div className="space-y-5">
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Nombre
+            Name
           </label>
           <input
             type="text"
             id="name"
             name="name"
             className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-            placeholder="Tu nombre completo"
+            placeholder="Your full name"
             required
           />
         </div>
@@ -37,14 +58,14 @@ const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
             id="email"
             name="email"
             className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-            placeholder="tu@email.com"
+            placeholder="your@email.com"
             required
           />
         </div>
         
         <div>
           <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Teléfono
+            Phone
           </label>
           <input
             type="tel"
@@ -57,13 +78,13 @@ const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
         
         <div>
           <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-            Mensaje
+            Message
           </label>
           <textarea
             id="message"
             name="message"
             className="w-full px-4 py-3 rounded-lg border border-gray-300 bg-gray-50 text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition duration-200"
-            placeholder="Describe tu proyecto o necesidades"
+            placeholder="Describe your project or needs"
             rows={4}
             required
           />
@@ -74,7 +95,7 @@ const QuotationForm: FC<QuotationFormProps> = ({ onSubmit }) => {
             type="submit"
             className="w-full py-3 px-4 bg-indigo-600 hover:bg-indigo-700 text-white font-medium rounded-lg transition duration-200 transform hover:scale-[1.02]"
           >
-            Enviar Solicitud
+            Submit Request
           </button>
         </div>
       </div>
