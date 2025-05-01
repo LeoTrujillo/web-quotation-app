@@ -33,13 +33,21 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen bg-gray-50">
-        <QuotationProvider>
-            <main>
+      <body className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 relative overflow-hidden">
+        {/* Glassmorphism background circles */}
+        <div className="fixed top-[-20%] left-[-20%] w-[600px] h-[600px] rounded-full bg-blue-400 opacity-30 blur-3xl"></div>
+        <div className="fixed bottom-[-20%] right-[-20%] w-[600px] h-[600px] rounded-full bg-purple-400 opacity-30 blur-3xl"></div>
+        <div className="fixed top-[30%] right-[20%] w-[400px] h-[400px] rounded-full bg-pink-400 opacity-30 blur-3xl"></div>
+        
+        {/* Content container with glass effect */}
+        <div className="relative min-h-screen backdrop-blur-sm">
+          <QuotationProvider>
+            <main className="container mx-auto px-4 py-8">
               <Outlet />
             </main>
-        </QuotationProvider>
-        <Scripts />
+          </QuotationProvider>
+          <Scripts />
+        </div>
       </body>
     </html>
   );

@@ -30,19 +30,23 @@ interface QuotationSummaryProps {
  */
 const QuotationSummary: FC<QuotationSummaryProps> = ({ totalPrice, sections, items }) => {
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md">
-      <h2 className="text-lg font-medium mb-4 text-gray-800">Quotation Summary</h2>
-      <div className="flex justify-between items-center mb-4">
-        <span className="text-gray-600">Total</span>
-        <span className="text-xl font-bold text-gray-800">${totalPrice}</span>
-      </div>
-      <div className="flex justify-between items-center mb-4">
-        <span className="text-gray-600">Sections</span>
-        <span className="text-gray-600">{sections}</span>
-      </div>
-      <div className="flex justify-between items-center mb-4">
-        <span className="text-gray-600">Items</span>
-        <span className="text-gray-600">{items}</span>
+    <div className="backdrop-blur-md bg-white/30 p-6 rounded-lg shadow-lg border border-white/20 h-full flex flex-col">
+      <h2 className="text-lg font-medium mb-6 text-white">Quotation Summary</h2>
+      <div className="flex-grow flex flex-col justify-between">
+        <div className="space-y-4">
+          <div className="flex justify-between items-center">
+            <span className="text-white/80">Total</span>
+            <span className="text-xl font-bold text-white">${totalPrice}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-white/80">Sections</span>
+            <span className="text-white/80">{sections}</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-white/80">Items</span>
+            <span className="text-white/80">{items}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
