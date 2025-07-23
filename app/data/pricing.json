@@ -1,63 +1,182 @@
 {
-  "landingPage": {
-    "basePrice": 3000,
-    "sections": {
-      "1-3": 0,
-      "4-6": 1000,
-      "7+": 2000
+  "services": [
+    {
+      "id": "landingPage",
+      "name": "Landing Page",
+      "description": "Estructura de una sola sección o varias (scroll)",
+      "basePrice": {
+        "usd": 200,
+        "mxn": 3600
+      },
+      "options": [
+        {
+          "id": "contactForm",
+          "name": "Formulario de contacto",
+          "price": {
+            "usd": 50,
+            "mxn": 900
+          }
+        },
+        {
+          "id": "animations",
+          "name": "Animaciones o transiciones personalizadas",
+          "price": {
+            "usd": 40,
+            "mxn": 720
+          }
+        },
+        {
+          "id": "analytics",
+          "name": "Integración con Analytics/SEO básico",
+          "price": {
+            "usd": 30,
+            "mxn": 540
+          }
+        }
+      ]
     },
-    "designIncluded": {
-      "yes": 1500,
-      "no": 0
+    {
+      "id": "corporateWebsite",
+      "name": "Sitio Web Corporativo",
+      "description": "Páginas: Inicio, Nosotros, Servicios, Contacto",
+      "basePrice": {
+        "usd": 400,
+        "mxn": 7200
+      },
+      "options": [
+        {
+          "id": "blog",
+          "name": "Blog",
+          "price": {
+            "usd": 80,
+            "mxn": 1440
+          }
+        },
+        {
+          "id": "gallery",
+          "name": "Galería o portafolio",
+          "price": {
+            "usd": 70,
+            "mxn": 1260
+          }
+        },
+        {
+          "id": "multilanguage",
+          "name": "Multilenguaje",
+          "price": {
+            "usd": 100,
+            "mxn": 1800
+          }
+        },
+        {
+          "id": "cms",
+          "name": "CMS básico (ex: WordPress/Headless CMS)",
+          "price": {
+            "usd": 120,
+            "mxn": 2160
+          }
+        }
+      ]
+    },
+    {
+      "id": "webApp",
+      "name": "Aplicación Web (Web App)",
+      "description": "Lógica de negocio + autenticación + dashboard",
+      "basePrice": {
+        "usd": 1000,
+        "mxn": 18000
+      },
+      "options": [
+        {
+          "id": "externalApis",
+          "name": "Integración con APIs externas",
+          "description": "Por integración",
+          "price": {
+            "usd": 100,
+            "mxn": 1800
+          }
+        },
+        {
+          "id": "realtimeNotifications",
+          "name": "Notificaciones en tiempo real",
+          "price": {
+            "usd": 150,
+            "mxn": 2700
+          }
+        },
+        {
+          "id": "userRoles",
+          "name": "Roles de usuario personalizados",
+          "price": {
+            "usd": 100,
+            "mxn": 1800
+          }
+        }
+      ]
+    },
+    {
+      "id": "mobileApp",
+      "name": "Aplicación Móvil (React Native o Flutter)",
+      "description": "Base funcionalidad y diseño UI",
+      "basePrice": {
+        "usd": 1500,
+        "mxn": 27000
+      },
+      "options": [
+        {
+          "id": "geolocation",
+          "name": "Geolocalización",
+          "price": {
+            "usd": 100,
+            "mxn": 1800
+          }
+        },
+        {
+          "id": "pushNotifications",
+          "name": "Notificaciones push",
+          "price": {
+            "usd": 80,
+            "mxn": 1440
+          }
+        },
+        {
+          "id": "backendIntegration",
+          "name": "Integración con backend propio o externo",
+          "price": {
+            "usd": 200,
+            "mxn": 3600
+          }
+        },
+        {
+          "id": "storePublication",
+          "name": "Publicación en stores",
+          "price": {
+            "usd": 100,
+            "mxn": 1800
+          }
+        }
+      ]
     }
+  ],
+  "currency": {
+    "default": "usd",
+    "options": [
+      {
+        "code": "usd",
+        "symbol": "$",
+        "name": "Dólares Estadounidenses"
+      },
+      {
+        "code": "mxn",
+        "symbol": "$",
+        "name": "Pesos Mexicanos"
+      }
+    ]
   },
-  "corporateWebsite": {
-    "basePrice": 6000,
-    "pages": {
-      "1-5": 0,
-      "6-10": 2000,
-      "10+": 4000
-    },
-    "adminPanel": {
-      "yes": 3000,
-      "no": 0
-    },
-    "design": {
-      "custom": 2500,
-      "template": 1000
+  "metadata": {
+    "lastUpdated": "2024-01-01",
+    "exchangeRate": {
+      "usd_to_mxn": 18.0
     }
-  },
-  "webApp": {
-    "basePrice": 10000,
-    "auth": {
-      "none": 0,
-      "email": 2000,
-      "social": 3000
-    },
-    "features": {
-      "cart": 4000,
-      "geolocation": 2500,
-      "realtimeChat": 3500,
-      "pushNotifications": 3000
-    }
-  },
-  "mobileApp": {
-    "basePrice": 12000,
-    "auth": {
-      "none": 0,
-      "email": 2000,
-      "social": 3000
-    },
-    "features": {
-      "camera": 3000,
-      "maps": 2500,
-      "offlineMode": 2000,
-      "notifications": 3000
-    }
-  },
-  "extras": {
-    "seo": 1000,
-    "supportMonthly": 1200,
-    "expressDelivery": 1.25
   }
 }

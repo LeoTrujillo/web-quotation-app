@@ -12,9 +12,9 @@ interface StepProgressProps {
 }
 
 const steps = [
-  { number: 1, title: "Select Project Type" },
-  { number: 2, title: "Project Details", optional: true },
-  { number: 3, title: "Review & Submit" }
+  { number: 1, title: "Seleccionar Servicio" },
+  { number: 2, title: "Información de Contacto" },
+  { number: 3, title: "Confirmación" }
 ];
 
 /**
@@ -37,10 +37,10 @@ const StepProgress: FC<StepProgressProps> = ({ currentStep }) => {
             {/* Mobile vertical line (before) */}
             {index > 0 && (
               <div className="absolute h-12 w-[2px] -translate-y-[3.5rem] left-5 md:hidden">
-                <div className="absolute w-full h-full bg-white/20" />
+                <div className="absolute w-full h-full bg-slate-300" />
                 <div 
                   className={`absolute w-full transition-all duration-700 ease-in-out
-                    ${currentStep > step.number ? 'bg-white' : 'bg-white/60'}`}
+                    ${currentStep > step.number ? 'bg-blue-600' : 'bg-slate-400'}`}
                   style={{ 
                     height: currentStep > step.number ? '100%' : 
                            currentStep === step.number ? '50%' : '0%',
@@ -54,10 +54,10 @@ const StepProgress: FC<StepProgressProps> = ({ currentStep }) => {
               {/* Desktop horizontal line (before circle) */}
               {index > 0 && (
                 <div className="hidden md:block h-[2px] w-full relative top-0">
-                  <div className="absolute w-full h-full bg-white/20" />
+                  <div className="absolute w-full h-full bg-slate-300" />
                   <div 
                     className={`absolute h-full transition-all duration-700 ease-in-out
-                      ${currentStep > step.number ? 'bg-white' : 'bg-white/60'}`}
+                      ${currentStep > step.number ? 'bg-blue-600' : 'bg-slate-400'}`}
                     style={{ 
                       width: currentStep >= step.number ? '100%' : 
                              currentStep === step.number - 1 ? '50%' : '0%',
@@ -71,12 +71,12 @@ const StepProgress: FC<StepProgressProps> = ({ currentStep }) => {
               <div className="flex flex-row md:flex-col items-start md:items-center relative">
                 <div 
                   className={`w-10 h-10 rounded-full flex items-center justify-center border-2 relative z-10
-                    transform transition-all duration-500 ease-in-out shrink-0
+                    transform transition-all duration-500 ease-in-out shrink-0 font-semibold
                     ${currentStep > step.number 
-                      ? 'bg-white border-white text-purple-600 scale-110' 
+                      ? 'bg-blue-600 border-blue-600 text-white scale-110' 
                       : currentStep === step.number
-                      ? 'bg-white/20 border-white text-white scale-110'
-                      : 'bg-white/5 border-white/20 text-white/60 scale-100'}`}
+                      ? 'bg-white border-blue-600 text-blue-600 scale-110 shadow-md'
+                      : 'bg-white border-slate-300 text-slate-400 scale-100'}`}
                 >
                   {step.number}
                 </div>
@@ -84,25 +84,20 @@ const StepProgress: FC<StepProgressProps> = ({ currentStep }) => {
                 {/* Title */}
                 <div className="ml-4 md:ml-0 md:absolute md:top-12 md:left-1/2 md:-translate-x-1/2 text-left md:text-center md:w-full">
                   <div className={`text-sm font-medium transition-all duration-500 ease-in-out whitespace-nowrap ${
-                    currentStep >= step.number ? 'text-white' : 'text-white/60'
+                    currentStep >= step.number ? 'text-slate-800' : 'text-slate-500'
                   }`}>
                     {step.title}
                   </div>
-                  {step.optional && (
-                    <div className="text-xs text-white/40 mt-0.5">
-                      Optional
-                    </div>
-                  )}
                 </div>
               </div>
 
               {/* Desktop horizontal line (after circle) */}
               {index < steps.length - 1 && (
                 <div className="hidden md:block h-[2px] w-full relative top-0">
-                  <div className="absolute w-full h-full bg-white/20" />
+                  <div className="absolute w-full h-full bg-slate-300" />
                   <div 
                     className={`absolute h-full transition-all duration-700 ease-in-out
-                      ${currentStep > step.number ? 'bg-white' : 'bg-white/60'}`}
+                      ${currentStep > step.number ? 'bg-blue-600' : 'bg-slate-400'}`}
                     style={{ 
                       width: currentStep > step.number ? '100%' : 
                              currentStep === step.number ? '50%' : '0%',
@@ -116,10 +111,10 @@ const StepProgress: FC<StepProgressProps> = ({ currentStep }) => {
             {/* Mobile vertical line (after) */}
             {index < steps.length - 1 && (
               <div className="absolute h-12 w-[2px] translate-y-[3.5rem] left-5 md:hidden">
-                <div className="absolute w-full h-full bg-white/20" />
+                <div className="absolute w-full h-full bg-slate-300" />
                 <div 
                   className={`absolute w-full transition-all duration-700 ease-in-out
-                    ${currentStep > step.number ? 'bg-white' : 'bg-white/60'}`}
+                    ${currentStep > step.number ? 'bg-blue-600' : 'bg-slate-400'}`}
                   style={{ 
                     height: currentStep > step.number ? '100%' : 
                            currentStep === step.number ? '50%' : '0%',

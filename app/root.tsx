@@ -33,18 +33,16 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 relative overflow-hidden">
-        {/* Glassmorphism background circles */}
-        <div className="fixed top-[-20%] left-[-20%] w-[600px] h-[600px] rounded-full bg-blue-400 opacity-30 blur-3xl"></div>
-        <div className="fixed bottom-[-20%] right-[-20%] w-[600px] h-[600px] rounded-full bg-purple-400 opacity-30 blur-3xl"></div>
-        <div className="fixed top-[30%] right-[20%] w-[400px] h-[400px] rounded-full bg-pink-400 opacity-30 blur-3xl"></div>
+      <body className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative font-sans text-base leading-relaxed">
+        {/* Glassmorphism background circles - más sutiles */}
+        <div className="fixed top-[-10%] left-[-10%] w-[500px] h-[500px] rounded-full bg-blue-200 opacity-20 blur-3xl"></div>
+        <div className="fixed bottom-[-10%] right-[-10%] w-[500px] h-[500px] rounded-full bg-indigo-200 opacity-20 blur-3xl"></div>
+        <div className="fixed top-[40%] right-[15%] w-[300px] h-[300px] rounded-full bg-slate-200 opacity-15 blur-3xl"></div>
         
         {/* Content container with glass effect */}
-        <div className="relative min-h-screen backdrop-blur-sm">
+        <div className="relative backdrop-blur-sm">
           <QuotationProvider>
-            <main className="container mx-auto px-4 py-8">
-              <Outlet />
-            </main>
+            <Outlet />
           </QuotationProvider>
           <Scripts />
         </div>

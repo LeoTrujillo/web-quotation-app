@@ -4,6 +4,9 @@ type ProductType = "landingPage" | "corporateWebsite" | "webApp" | "mobileApp";
 
 interface QuotationData {
   productType: string;
+  selectedOptions?: string[];
+  totalPrice?: number;
+  currency?: 'usd' | 'mxn';
   details? : {
     [key in ProductType]?: {
       sections: number;
@@ -28,6 +31,9 @@ const QuotationContext = createContext<QuotationContextType | undefined>(undefin
 export function QuotationProvider({ children }: { children: ReactNode }) {
   const [quotation, setQuotation] = useState<QuotationData>({
     productType: '',
+    selectedOptions: [],
+    totalPrice: 0,
+    currency: 'usd',
     setProductType: (type: string) => {},
     setDetails: (details) => {},
     setExtras: (extras) => {}

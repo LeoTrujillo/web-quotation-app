@@ -4,14 +4,8 @@ import { useNavigate } from "@remix-run/react";
 import QuotationForm from "~/components/QuotationForm";
 import QuotationSummary from "~/components/QuotationSummary";
 import StepProgress from "~/components/StepProgress";
+import PricingCalculator from "~/components/PricingCalculator";
 import { useQuotation } from "~/context/quotation";
-
-const options = [
-  { label: "Landing Page", value: "landingPage" },
-  { label: "Corporate Website", value: "corporateWebsite" },
-  { label: "Web Application", value: "webApp" },
-  { label: "Mobile Application", value: "mobileApp" },
-];
 
 export const meta: MetaFunction = () => {
   return [
@@ -23,90 +17,165 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const [currentStep, setCurrentStep] = useState(1);
   const [totalPrice, setTotalPrice] = useState(0);
-  const [sections, setSections] = useState(0);
-  const [items, setItems] = useState(0);
-  const [selected, setSelected] = useState<string>();
+  const [selectedCurrency, setSelectedCurrency] = useState<'usd' | 'mxn'>('usd');
+  const [selectedService, setSelectedService] = useState<string>('');
+  const [selectedOptions, setSelectedOptions] = useState<string[]>([]);
   const { updateQuotation } = useQuotation();
   const navigate = useNavigate();
 
   const handleSubmit = (data: any) => {
     console.log(data);
+    // Aquí se podría enviar a un paso 3 de confirmación
+    setCurrentStep(3);
+  };
+
+  const handlePriceUpdate = (total: number, currency: string) => {
+    setTotalPrice(total);
+    setSelectedCurrency(currency as 'usd' | 'mxn');
   };
 
   const handleContinue = () => {
-    if (!selected) return;
-    updateQuotation({ productType: selected });
+    if (!selectedService) return;
+    updateQuotation({ 
+      productType: selectedService,
+      selectedOptions,
+      totalPrice,
+      currency: selectedCurrency
+    });
     setCurrentStep(2);
   };
+
+  const handleBack = () => {
+    if (currentStep > 1) {
+      setCurrentStep(currentStep - 1);
+    }
+  };
+
+  const handleServiceSelection = (serviceId: string, options: string[]) => {
+    setSelectedService(serviceId);
+    setSelectedOptions(options);
+  };
+
+  const canGoBack = currentStep > 1;
+  const isLastStep = currentStep === 3;
 
   return (
     <div 
       data-testid="main-container"
-      className="flex min-h-screen w-full items-center justify-center py-8"
+      className="w-full"
     >
-      <div className="flex w-full max-w-7xl flex-col items-center gap-8 p-4">
-        <header className="w-full text-center">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-white">
-              <span className="sr-only">Web Quotation</span>
-            </h1>
+      <div className="w-full py-4 sm:py-8">
+        <div className="flex w-full max-w-7xl flex-col items-center gap-6 sm:gap-8 p-4 mx-auto">
+          <header className="w-full text-center">
+            <div className="flex justify-between items-center">
+              <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-800">
+                Calculadora de Precios
+              </h1>
+            </div>
+          </header>
+
+          {/* Progress bar section */}
+          <div className="w-full -mb-4">
+            <StepProgress currentStep={currentStep} totalSteps={3} />
           </div>
-        </header>
 
-        {/* Progress bar section */}
-        <div className="w-full -mb-4">
-          <StepProgress currentStep={currentStep} totalSteps={3} />
-        </div>
-
-        {/* Main content area with two columns */}
-        <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-          {/* Left column - Forms */}
-          <div className="h-full">
-            {currentStep === 1 && (
-              <div className="backdrop-blur-md bg-white/30 rounded-lg shadow-lg border border-white/20 p-6 h-full flex flex-col">
-                <h2 className="text-xl font-bold mb-6 text-white">
-                  What would you like to quote?
-                </h2>
-                <form className="space-y-4 flex-grow flex flex-col">
-                  <div className="flex-grow space-y-4">
-                    {options.map((opt) => (
-                      <label key={opt.value} className="flex items-center space-x-2 cursor-pointer">
-                        <input
-                          type="radio"
-                          name="productType"
-                          value={opt.value}
-                          checked={selected === opt.value}
-                          onChange={() => setSelected(opt.value)}
-                          className="accent-white"
-                        />
-                        <span className="text-white">
-                          {opt.label}
-                        </span>
-                      </label>
-                    ))}
+          {/* Main content area with two columns */}
+          <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 items-start">
+            {/* Left column - Forms */}
+            <div>
+              {currentStep === 1 && (
+                <div className="backdrop-blur-md bg-white/70 rounded-xl shadow-lg border border-white/30 p-4 sm:p-6">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 text-slate-800">
+                    Selecciona tu servicio y opciones
+                  </h2>
+                  <PricingCalculator 
+                    onPriceUpdate={handlePriceUpdate}
+                    onServiceSelection={handleServiceSelection}
+                  />
+                  <div className="mt-6 pt-6 border-t border-slate-200">
+                    <button
+                      type="button"
+                      className="w-full px-4 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg disabled:bg-slate-300 disabled:cursor-not-allowed transition-colors font-medium text-sm sm:text-base shadow-md"
+                      onClick={handleContinue}
+                      disabled={!selectedService || totalPrice === 0}
+                    >
+                      Continuar con la cotización
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    className="mt-auto px-4 py-2 bg-white/20 hover:bg-white/30 text-white rounded hover:bg-white/40 disabled:bg-white/10 disabled:cursor-not-allowed transition-colors backdrop-blur-sm border border-white/20"
-                    onClick={handleContinue}
-                    disabled={!selected}
-                  >
-                    Continue
-                  </button>
-                </form>
-              </div>
-            )}
-            {currentStep === 2 && (
-              <div className="h-full">
-                <QuotationForm onSubmit={handleSubmit} />
-              </div>
-            )}
+                </div>
+              )}
+              {currentStep === 2 && (
+                <div>
+                  <QuotationForm 
+                    onSubmit={handleSubmit} 
+                    onBack={handleBack}
+                    quotationData={{
+                      serviceId: selectedService,
+                      selectedOptions,
+                      totalPrice,
+                      currency: selectedCurrency
+                    }}
+                  />
+                </div>
+              )}
+              {currentStep === 3 && (
+                <div className="backdrop-blur-md bg-white/70 rounded-xl shadow-lg border border-white/30 p-4 sm:p-6">
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-4 sm:mb-6 text-slate-800">
+                    ¡Cotización Enviada!
+                  </h2>
+                  <div className="text-center space-y-4">
+                    <div className="text-6xl mb-4">🎉</div>
+                    <p className="text-slate-700">
+                      Tu solicitud de cotización ha sido enviada exitosamente. 
+                      Nos pondremos en contacto contigo pronto.
+                    </p>
+                    <div className="pt-4">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setCurrentStep(1);
+                          setSelectedService('');
+                          setSelectedOptions([]);
+                          setTotalPrice(0);
+                        }}
+                        className="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors font-medium"
+                      >
+                        Nueva Cotización
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Right column - Summary */}
+            <div>
+              <QuotationSummary 
+                totalPrice={totalPrice} 
+                sections={selectedOptions.length} 
+                items={selectedService ? 1 : 0} 
+                selectedService={selectedService}
+                selectedOptions={selectedOptions}
+                currency={selectedCurrency}
+              />
+            </div>
           </div>
 
-          {/* Right column - Summary */}
-          <div className="h-full">
-            <QuotationSummary totalPrice={totalPrice} sections={sections} items={items} />
-          </div>
+          {/* Navigation buttons */}
+          {canGoBack && !isLastStep && (
+            <div className="w-full flex justify-center mt-6">
+              <button
+                type="button"
+                onClick={handleBack}
+                className="px-6 py-3 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg transition-colors font-medium text-sm sm:text-base flex items-center space-x-2"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>Atrás</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
     </div>
